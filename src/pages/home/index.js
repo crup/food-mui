@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import withLayout from "../../components/layout";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import MenuItemCard from "../../components/menu-item-card"
+import MenuList from "../../components/menu-list"
 import Sidebar from "../../components/sidebar"
-import data from "./data";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,12 +16,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
 const Home = () => {
     const classes = useStyles();
-    const parsedData = data;
-    
     return (
         <Grid container spacing={3}>
             <Grid item xs={3}>
@@ -31,13 +26,7 @@ const Home = () => {
                 </Paper>
             </Grid>
             <Grid item xs={9}>
-                {parsedData.map((item, index) => <MenuItemCard 
-                key={index} 
-                name={item.name} 
-                thumbnail={item.thumbnail} 
-                price={item.price} 
-                description={item.description} 
-                />)}
+                <MenuList />
             </Grid>
         </Grid>
     )

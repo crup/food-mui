@@ -1,16 +1,6 @@
 import { combineReducers } from 'redux';
-// import test from "../component/reducer";
-const testReducer = function (state = 0, action) {
-    switch (action.type) {
-      case "INCREMENT":
-        return state + 1;
-      case "DECREMENT":
-        return state - 1;
-      default:
-        return state;
-    }
-  };
+import menuList from "./components/menu-list/reducers";
 
 export default combineReducers({
-    test: testReducer,
+  menuList
 });
