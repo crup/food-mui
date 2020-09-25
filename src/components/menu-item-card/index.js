@@ -36,7 +36,8 @@ export default function MenuItemCard({
     name,
     thumbnail,
     price,
-    description
+    description,
+    onClick
 }) {
     const classes = useStyles();
     return (
@@ -57,6 +58,7 @@ export default function MenuItemCard({
                 </CardContent>}
                 <CardActions disableSpacing>
                     <Button
+                    onClick={onClick}
                         variant="outlined"
                         color="default"
                         className={classes.button}

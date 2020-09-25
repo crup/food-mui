@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import MenuList from "./component";
-import Actions from "./actions";
+import MenuActions from "./actions";
+import CartActions from "../cart-list/actions";
 
 const mapStateToProps = ({
     menuList: { menuItems },
@@ -10,8 +11,9 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    fetchMenu: Actions.fetchMenu,
-    fetchCategories: Actions.fetchCategories,
+    fetchMenu: MenuActions.fetchMenu,
+    fetchCategories: MenuActions.fetchCategories,
+    addToCart: CartActions.addToCart
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuList);

@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import Configuration from "./components/configuration";
 import Home from "./pages/home";
+import Cart from "./pages/cart";
 
 const App = ({ route, children }) => {
     return (
@@ -28,6 +29,11 @@ const routes = [
                 path: "/",
                 exact: true,
                 component: Home,
+            },
+            {
+                path: "/cart",
+                exact: true,
+                component: Cart,
             },
         ]
     }

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import Grid from '@material-ui/core/Grid';
 import MenuItemCard from "../menu-item-card"
 
 const MenuList = ({
     fetchMenu,
     fetchCategories,
-    menuItems
+    menuItems,
+    addToCart
 }) => {
     const parsedData = menuItems;
     useEffect(() => {
@@ -13,16 +13,21 @@ const MenuList = ({
         fetchCategories();
     }, [fetchCategories, fetchMenu])
 
+    const onClick = (index) => {
+        addToCart(index);
+    }
+
     return (
-        <Grid item xs={9}>
-                {parsedData.map((item, index) => <MenuItemCard 
+        <React.Fragment>
+            {parsedData.map((item, index) => <MenuItemCard 
                 key={index} 
                 name={item.name} 
                 thumbnail={item.thumbnail} 
                 price={item.price} 
                 description={item.description} 
+                onClick={() => onClick(index)}
                 />)}
-            </Grid>
+        </React.Fragment>
     )
 }
 
