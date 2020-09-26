@@ -1,8 +1,9 @@
 import { createReducer } from "reduxsauce";
+import menuParser from "../../parsers/menu-parser";
 import Types from "./types";
 
 export const INITIAL_STATE = {
-    menuItems: [],
+    menuItems: {},
     isMenuLoading: false,
     categories: [],
     isCategoriesLoading: false
@@ -13,11 +14,11 @@ export const fetchMenu = (state = INITIAL_STATE) => {
 };
 
 export const fetchMenuSuccess = (state = INITIAL_STATE, { menuItems }) => {
-    return { ...state, isMenuLoading: false, menuItems };
+    return { ...state, isMenuLoading: false, menuItems: menuParser(menuItems) };
 };
 
 export const fetchMenuError = (state = INITIAL_STATE, error) => {
-    return { ...state, isMenuLoading: false, menuItems: [], error };
+    return { ...state, isMenuLoading: false, menuItems: {}, error };
 };
 
 export const fetchCategories = (state = INITIAL_STATE) => {

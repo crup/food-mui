@@ -8,7 +8,7 @@ import Sidebar from "../../components/sidebar"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        padding: theme.spacing(6)
     },
     paper: {
         padding: theme.spacing(2),
@@ -19,14 +19,16 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
     const classes = useStyles();
     return (
-        <Grid container spacing={3}>
+        <Grid className={classes.root} container spacing={3}>
             <Grid item xs={3}>
                 <Paper className={classes.paper}>
                     <Sidebar />
                 </Paper>
             </Grid>
             <Grid item xs={9}>
+            <Paper className={classes.paper}>
                 <MenuList />
+            </Paper>
             </Grid>
         </Grid>
     )

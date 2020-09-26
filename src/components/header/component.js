@@ -32,8 +32,6 @@ const Header = ({
     history.push("/cart");
   }
 
-  console.warn({totalItems})
-
   return (
     <AppBar position="static">
       <Toolbar>
