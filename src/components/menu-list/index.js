@@ -5,10 +5,13 @@ import MenuActions from "./actions";
 import CartActions from "../cart-list/actions";
 
 const mapStateToProps = ({
-    menuList: { menuItems, categories },
+    menuList: { menuItems, categories, activeCategory },
+    shoppingCart: { cart }
 }) => ({
     menuItems,
-    categories
+    categories,
+    activeCategory,
+    cart
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

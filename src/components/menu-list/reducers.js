@@ -6,7 +6,8 @@ export const INITIAL_STATE = {
     menuItems: {},
     isMenuLoading: false,
     categories: [],
-    isCategoriesLoading: false
+    isCategoriesLoading: false,
+    activeCategory: null
 };
 
 export const fetchMenu = (state = INITIAL_STATE) => {
@@ -17,7 +18,7 @@ export const fetchMenuSuccess = (state = INITIAL_STATE, { menuItems }) => {
     return { ...state, isMenuLoading: false, menuItems: menuParser(menuItems) };
 };
 
-export const fetchMenuError = (state = INITIAL_STATE, error) => {
+export const fetchMenuError = (state = INITIAL_STATE, { error }) => {
     return { ...state, isMenuLoading: false, menuItems: {}, error };
 };
 
@@ -29,8 +30,12 @@ export const fetchCategoriesSuccess = (state = INITIAL_STATE, { categories }) =>
     return { ...state, isCategoriesLoading: false, categories };
 };
 
-export const fetchCategoriesError = (state = INITIAL_STATE, error) => {
+export const fetchCategoriesError = (state = INITIAL_STATE, { error }) => {
     return { ...state, isCategoriesLoading: false, categories: [], error };
+};
+
+export const setActiveCategory = (state = INITIAL_STATE, { activeCategory }) => {
+    return { ...state, activeCategory };
 };
 
 export const HANDLERS = {
@@ -39,7 +44,8 @@ export const HANDLERS = {
     [Types.FETCH_MENU_FAILURE]: fetchMenuError,
     [Types.FETCH_CATEGORIES]: fetchCategories,
     [Types.FETCH_CATEGORIES_SUCCESS]: fetchCategoriesSuccess,
-    [Types.FETCH_CATEGORIES_FAILURE]: fetchCategoriesError
+    [Types.FETCH_CATEGORIES_FAILURE]: fetchCategoriesError,
+    [Types.SET_ACTIVE_CATEGORY]: setActiveCategory,
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

@@ -20,12 +20,12 @@ const Home = () => {
     const classes = useStyles();
     return (
         <Grid className={classes.root} container spacing={3}>
-            <Grid item xs={3}>
+            <Grid item md={3} xs={12}>
                 <Paper className={classes.paper}>
                     <Sidebar />
                 </Paper>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item md={9} xs={12}>
             <Paper className={classes.paper}>
                 <MenuList />
             </Paper>

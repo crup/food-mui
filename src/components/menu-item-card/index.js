@@ -9,12 +9,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: '500px',
+        minWidth: 320,
+        marginRight: 20,
+        display: "inline-block"
     },
     media: {
         height: 0,
@@ -30,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
         height: 100,
         width: 100
     },
+    badge: {
+        minWidth: "100%"
+    }
 }));
 
 export default function MenuItemCard({
@@ -37,37 +43,41 @@ export default function MenuItemCard({
     thumbnail,
     price,
     description,
-    onClick
+    onClick,
+    buttonText = "Add",
+    quantity
 }) {
     const classes = useStyles();
     return (
         <Box className={classes.root} mb={3}>
-            <Card>
-                <CardHeader
-                    title={name}
-                    subheader={`₹ ${price / 100}`}
-                    avatar={
-                        thumbnail ? <Avatar aria-label={name} alt={name} src={thumbnail} className={classes.large}></Avatar> :
-                            <Avatar aria-label={name} alt={name} className={classes.pink}><FastfoodIcon /></Avatar>
-                    }
-                />
-                {description && <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {description}
-                    </Typography>
-                </CardContent>}
-                <CardActions disableSpacing>
-                    <Button
-                    onClick={onClick}
-                        variant="outlined"
-                        color="default"
-                        className={classes.button}
-                        endIcon={<ShoppingCartIcon />}
-                    >
-                        Add
-      </Button>
-                </CardActions>
-            </Card>
+            <Badge className={classes.badge} badgeContent={quantity} color="secondary">
+                <Card className={classes.badge}>
+                    <CardHeader
+                        title={name}
+                        subheader={`₹ ${price / 100}`}
+                        avatar={
+                            thumbnail ? <Avatar aria-label={name} alt={name} src={thumbnail} className={classes.large}></Avatar> :
+                                <Avatar aria-label={name} alt={name} className={classes.pink}><FastfoodIcon /></Avatar>
+                        }
+                    />
+                    {description && <CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {description}
+                        </Typography>
+                    </CardContent>}
+                    <CardActions disableSpacing>
+                        <Button
+                            onClick={onClick}
+                            variant="outlined"
+                            color="default"
+                            className={classes.button}
+                            endIcon={<ShoppingCartIcon />}
+                        >
+                            {buttonText}
+                        </Button>
+                    </CardActions>
+                </Card>
+          </Badge>
         </Box>
     );
 }

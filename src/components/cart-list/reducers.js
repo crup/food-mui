@@ -6,20 +6,30 @@ export const INITIAL_STATE = {
     totalItems: 0
 };
 
-export const addToCart = (state = INITIAL_STATE, { index }) => {
+export const addToCart = (state = INITIAL_STATE, { category, index }) => {
     return { ...state, cart: {
             ...state.cart, 
-            [index]: (state.cart[index] ? state.cart[index] : 0) + 1,
+            [category]: {
+                ...state.cart[category],
+                [index]: (state.cart[category] && state.cart[category][index] ? state.cart[category][index] : 0) + 1,
+            },
         },
         totalItems: state.totalItems + 1
     };
 };
 
-export const removeFromCart = (state = INITIAL_STATE, { index }) => {
-    return { ...state, isMenuLoading: false, cart: [
-        ...state.cart.slice(0, index),
-        ...state.cart.slice(index),
-    ],
+export const removeFromCart = (state = INITIAL_STATE, { category, index }) => {
+    const categoryData = { ...state.cart[category] };
+    if(categoryData[index]) {
+        categoryData[index] = categoryData[index] - 1;
+    }
+    if(categoryData[index] === 0) {
+        delete categoryData[index];
+    }
+    return { ...state, isMenuLoading: false, cart: {
+        ...state.cart,
+        [category]: categoryData
+    },
     totalItems: state.totalItems - 1 };
 };
 

@@ -51,7 +51,13 @@ const fetchCategories = () => dispatch => {
     });
 };
 
+const setActiveCategory = (activeCategory) => ({
+    type: Types.SET_ACTIVE_CATEGORY,
+    activeCategory
+});
+
 export default {
     fetchMenu,
-    fetchCategories
+    fetchCategories,
+    setActiveCategory
 }

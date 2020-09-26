@@ -15,7 +15,9 @@ const MenuList = ({
     fetchCategories,
     menuItems,
     addToCart,
-    categories
+    categories,
+    activeCategory,
+    cart
 }) => {
     const classes = useStyles();
 
@@ -23,14 +25,14 @@ const MenuList = ({
         fetchCategories().then(fetchMenu);
     }, [fetchCategories, fetchMenu])
 
-    const onClick = (index) => {
-        addToCart(index);
+    const onClick = (category, index) => {
+        addToCart(category, index);
     }
 
     return (
         <React.Fragment>
             {categories
-                .filter(category => !!menuItems[category.slug])
+                .filter(category => !!menuItems[category.slug] && (activeCategory ? category.slug === activeCategory : true))
                 .map((category, index) => {
                     return <Fragment key={index}>
                         <Typography className={classes.categoryHeading} variant="h4" component="h2">
@@ -42,7 +44,8 @@ const MenuList = ({
                             thumbnail={menuItem.thumbnail}
                             price={menuItem.price}
                             description={menuItem.description}
-                            onClick={() => onClick(menuIndex)}
+                            onClick={() => onClick(category.slug, menuIndex)}
+                            quantity={cart[category.slug] && cart[category.slug][menuIndex]}
                         />)}
                     </Fragment>
                 })}

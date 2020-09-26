@@ -9,6 +9,8 @@ export default createTypes(
     FETCH_CATEGORIES
     FETCH_CATEGORIES_SUCCESS
     FETCH_CATEGORIES_FAILURE
+
+    SET_ACTIVE_CATEGORY
 `,
     {
         prefix: "menulist/"
